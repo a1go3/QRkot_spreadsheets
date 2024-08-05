@@ -9,20 +9,22 @@ from app.core.google_client import get_service
 from app.core.user import current_superuser
 
 from app.crud.charity_project import charity_project_crud
+from app.schemas import CharityProjectDB
 
-# Создаём экземпляр класса APIRouter
+
 router = APIRouter()
 
 
 @router.get(
     "/",
-    # Тип возвращаемого эндпоинтом ответа
-    response_model=list[dict[str, int]],
-    # Определяем зависимости
-    dependencies=[Depends(current_superuser)],
+    response_model=list[CharityProjectDB],
+    response_model_exclude_none=True,
 )
 async def get_report(
     session: AsyncSession = Depends(get_async_session),
     # «Обёртка»
-    wrapper_services: Aiogoogle = Depends(get_service),
-): ...
+    # wrapper_services: Aiogoogle = Depends(get_service),
+) -> list[CharityProjectDB]:
+    """Endpoint для получения списка всех благотворительных проектов.
+    Доступен для любого (в том числе неавторизированного) пользователя."""
+    return await charity_project_crud.get_all(session)
