@@ -29,7 +29,7 @@ class CRUDCharityProject(CRUDBase):
         средств, — от меньшего к большему"""
         db_objs = await session.execute(
             select(CharityProject)
-            .where(CharityProject.fully_invested == True)
+            .where(CharityProject.fully_invested == 1)
             .order_by(
                 func.julianday(CharityProject.close_date)
                 - func.julianday(CharityProject.create_date)
