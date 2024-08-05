@@ -27,4 +27,17 @@ async def get_report(
 ) -> list[CharityProjectDB]:
     """Endpoint для получения списка всех благотворительных проектов.
     Доступен для любого (в том числе неавторизированного) пользователя."""
+    return await charity_project_crud.get_projects_by_completion_rate(session)
+
+
+@router.get(
+    "/",
+    response_model=list[CharityProjectDB],
+    response_model_exclude_none=True,
+)
+async def get_all_charity_projects(
+    session: AsyncSession = Depends(get_async_session),
+) -> list[CharityProjectDB]:
+    """Endpoint для получения списка всех благотворительных проектов.
+    Доступен для любого (в том числе неавторизированного) пользователя."""
     return await charity_project_crud.get_all(session)

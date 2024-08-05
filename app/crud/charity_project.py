@@ -31,13 +31,12 @@ class CRUDCharityProject(CRUDBase):
             select(CharityProject)
             .where(CharityProject.fully_invested == True)
             .order_by(
-                func.datediff(
-                    CharityProject.close_date, CharityProject.create_date
-                ).asc()
+                func.julianday(CharityProject.close_date)
+                - func.julianday(CharityProject.create_date)
             )
         )
 
-        return db_objs.all()
+        return db_objs.scalars().all()
 
 
 charity_project_crud = CRUDCharityProject(CharityProject)
