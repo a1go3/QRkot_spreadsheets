@@ -22,8 +22,7 @@ router = APIRouter()
 )
 async def get_report(
     session: AsyncSession = Depends(get_async_session),
-    # «Обёртка»
-    # wrapper_services: Aiogoogle = Depends(get_service),
+    wrapper_services: Aiogoogle = Depends(get_service),
 ) -> list[CharityProjectDB]:
     """Endpoint для получения списка всех благотворительных проектов.
     Доступен для любого (в том числе неавторизированного) пользователя."""
