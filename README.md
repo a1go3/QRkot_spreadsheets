@@ -40,11 +40,11 @@ QRKot - приложение для Благотворительного фон�
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone https://github.com/tatarenkov-r-v/cat_charity_fund
+git clone https://github.com/tatarenkov-r-v/QRkot_spreadsheets.git
 ```
 
 ```
-cd cat_charity_fund
+cd QRkot_spreadsheets
 ```
 
 Создать и активировать виртуальное окружение:
@@ -89,6 +89,22 @@ SECRET=ctrhtnysqctrhnt
 FIRST_SUPERUSER_EMAIL=superuser@mail.ru
 FIRST_SUPERUSER_PASSWORD=superpassword
 ```
+
+Кроме этого, добавьте в файл `.env` данные своего сервисного аккаунта Google:
+```
+TYPE=
+PROJECT_ID=
+PRIVATE_KEY_ID=
+PRIVATE_KEY=
+CLIENT_EMAIL=
+CLIENT_ID=
+AUTH_URI=
+TOKEN_URI=
+AUTH_PROVIDER_X509_CERT_URL=
+CLIENT_X509_CERT_URL=
+EMAIL= 
+```
+
 **При первом запуске проекта автоматически создается пользователь с правами super_user.
 Данные этого пользователя указаны в .env файле.**
 
