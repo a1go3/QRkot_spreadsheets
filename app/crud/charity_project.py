@@ -2,6 +2,7 @@ from typing import Optional
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.sql import label
 
 from app.crud.base import CRUDBase
 from app.models.charity_project import CharityProject
@@ -27,6 +28,7 @@ class CRUDCharityProject(CRUDBase):
         """Получение списка со всеми закрытыми проектами
         отсортированного по количеству времени, которое понадобилось на сбор
         средств, — от меньшего к большему"""
+
         db_objs = await session.execute(
             select(CharityProject)
             .where(CharityProject.fully_invested == 1)
@@ -35,7 +37,6 @@ class CRUDCharityProject(CRUDBase):
                 - func.julianday(CharityProject.create_date)
             )
         )
-
         return db_objs.scalars().all()
 
 
