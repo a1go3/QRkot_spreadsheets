@@ -31,14 +31,12 @@ not_auth_user = User(
 @pytest.fixture
 def user_client():
     def raise_forbidden():
-        raise HTTPException(status_code=403, detail='Forbidden')
+        raise HTTPException(status_code=403, detail="Forbidden")
 
     app.dependency_overrides = {}
     app.dependency_overrides[get_async_session] = override_db
     app.dependency_overrides[current_user] = lambda: user
-    app.dependency_overrides[current_superuser] = (
-        lambda: raise_forbidden()
-    )
+    app.dependency_overrides[current_superuser] = lambda: raise_forbidden()
     with TestClient(app) as client:
         yield client
 

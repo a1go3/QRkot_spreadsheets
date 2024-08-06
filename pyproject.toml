@@ -33,6 +33,8 @@ mixer = "^7.2.2"
 toml = "^0.10.2"
 anyio = "3.6.1"
 isort = "^5.13.2"
+flake8-quotes = "^3.4.0"
+flake8-isort = "^6.1.1"
 
 [build-system]
 requires = ["poetry-core"]
