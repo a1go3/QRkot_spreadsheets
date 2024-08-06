@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from aiogoogle import Aiogoogle
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -7,14 +5,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_async_session
 from app.core.google_client import get_service
 from app.core.user import current_superuser
-
 from app.crud.charity_project import charity_project_crud
 from app.schemas import CharityProjectDB
-from app.service.google_api import (
-    spreadsheets_create,
-    set_user_permissions,
-    spreadsheets_update_value,
-)
+from app.service.google_api import (set_user_permissions, spreadsheets_create,
+                                    spreadsheets_update_value)
 
 router = APIRouter()
 
@@ -33,10 +27,10 @@ async def get_report(
     charity_projects = (
         await charity_project_crud.get_projects_by_completion_rate(session)
     )
-    spreadsheetid = await spreadsheets_create(wrapper_services)
-    await set_user_permissions(spreadsheetid, wrapper_services)
+    spreadsheet_id = await spreadsheets_create(wrapper_services)
+    await set_user_permissions(spreadsheet_id, wrapper_services)
     await spreadsheets_update_value(
-        spreadsheetid,
+        spreadsheet_id,
         charity_projects,
         wrapper_services,
     )

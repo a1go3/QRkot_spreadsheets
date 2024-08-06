@@ -35,3 +35,13 @@ class AppExamples:
         "Проект для кота, который хочет купить игрушки."
     )
     DONATION_COMMENT: str = "Пожертвование всякие цели."
+
+
+@dataclass
+class AppSpreadsheet:
+    TITLE: str = ("Отчёт от",)
+    FORMAT: str = ("%Y/%m/%d %H:%M:%S",)
+    SHEET_TITLE: str = "Лист #1"
+    RAW_COUNT: int = 100
+    COLUMN_COUNT: int = 4
+    RANGE: str = "A1:E30"
