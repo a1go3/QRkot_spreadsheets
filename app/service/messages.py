@@ -45,3 +45,5 @@ class AppSpreadsheet:
     RAW_COUNT: int = 100
     COLUMN_COUNT: int = 4
     RANGE: str = "A1:E30"
+    SHEETS_API_VERSION: str = "v4"
+    DRIVE_API_VERSION: str = "v3"
