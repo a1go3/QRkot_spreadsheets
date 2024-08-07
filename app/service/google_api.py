@@ -9,9 +9,9 @@ from app.service import AppSpreadsheet
 
 async def spreadsheets_create(wrapper_services: Aiogoogle) -> str:
     now_date_time = datetime.now().strftime(AppSpreadsheet.FORMAT)
-    service = await wrapper_services.discover("sheets",
-                                              AppSpreadsheet.SHEETS_API_VERSION
-                                              )
+    service = await wrapper_services.discover(
+        "sheets", AppSpreadsheet.SHEETS_API_VERSION
+    )
     spreadsheet_body = {
         "properties": {
             "title": f"{AppSpreadsheet.TITLE} {now_date_time}",
@@ -46,9 +46,9 @@ async def set_user_permissions(
         "role": "writer",
         "emailAddress": settings.email,
     }
-    service = await wrapper_services.discover("drive",
-                                              AppSpreadsheet.SHEETS_API_VERSION
-                                              )
+    service = await wrapper_services.discover(
+        "drive", AppSpreadsheet.SHEETS_API_VERSION
+    )
     await wrapper_services.as_service_account(
         service.permissions.create(
             fileId=spreadsheet_id, json=permissions_body, fields="id"
@@ -63,9 +63,9 @@ async def spreadsheets_update_value(
 ):
     """Сохраняет информацию в гугл таблицу"""
     now_date_time = datetime.now().strftime(AppSpreadsheet.FORMAT)
-    service = await wrapper_services.discover("sheets",
-                                              AppSpreadsheet.SHEETS_API_VERSION
-                                              )
+    service = await wrapper_services.discover(
+        "sheets", AppSpreadsheet.SHEETS_API_VERSION
+    )
     table_values = [
         ["Отчёт от", now_date_time],
         ["Топ проектов по скорости закрытия."],

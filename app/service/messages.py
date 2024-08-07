@@ -39,8 +39,8 @@ class AppExamples:
 
 @dataclass
 class AppSpreadsheet:
-    TITLE: str = ("Отчёт от",)
-    FORMAT: str = ("%Y/%m/%d %H:%M:%S",)
+    TITLE: str = "Отчёт от"
+    FORMAT: str = "%Y/%m/%d %H:%M:%S"
     SHEET_TITLE: str = "Лист #1"
     RAW_COUNT: int = 100
     COLUMN_COUNT: int = 4
